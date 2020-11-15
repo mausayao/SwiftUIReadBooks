@@ -20,6 +20,7 @@ struct BookRow: View {
                     .font(.title3)
                     .foregroundColor(.secondary)
             }
+            .lineLimit(1)
         }
     }
 }
