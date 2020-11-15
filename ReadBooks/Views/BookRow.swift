@@ -11,16 +11,26 @@ struct BookRow: View {
     let book: Book
     
     var body: some View {
-        HStack {
-            Book.Image(title: book.title)
-            VStack(alignment: .leading) {
-                Text(book.title)
-                    .font(.title2)
-                Text(book.author)
-                    .font(.title3)
-                    .foregroundColor(.secondary)
+        NavigationLink(
+            destination: DetailView(book: book)
+        ){
+            HStack {
+                Book.Image(title: book.title)
+                VStack(alignment: .leading) {
+                    Text(book.title)
+                        .font(.title2)
+                    Text(book.author)
+                        .font(.title3)
+                        .foregroundColor(.secondary)
+                }
+                .lineLimit(1)
             }
-            .lineLimit(1)
         }
+    }
+}
+
+struct BookRow_Previews: PreviewProvider {
+    static var previews: some View {
+        BookRow(book: .init())
     }
 }
