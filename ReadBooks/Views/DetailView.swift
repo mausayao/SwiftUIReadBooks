@@ -10,10 +10,17 @@ import SwiftUI
 struct DetailView: View {
     let book: Book
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
+            AuthorAndTitleStack(
+                book: book,
+                titleFont: .title,
+                authorFont: .title2
+                )
             Book.Image(title: book.title)
             Spacer()
         }
+        .padding()
+      
     }
 }
 
