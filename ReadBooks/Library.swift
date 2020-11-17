@@ -5,6 +5,9 @@
 //  Created by Maurício de Freitas Sayão on 15/11/20.
 //
 
+// SwiftUI não tem uma forma de guarda imagens, mas o UIImage sim
+import class UIKit.UIImage
+
 final class Library {
     var sortedBooks: [Book] { bookCache }
     
@@ -21,4 +24,6 @@ final class Library {
         .init(title: "Drawing People", author: "Barbara Bradley"),
         .init(title: "What to Say When You Talk to Yourself", author: "Shad Helmstetter")
     ]
+    
+    var uiImages: [Book: UIImage] = [:]
 }

@@ -5,7 +5,7 @@
 //  Created by Maurício de Freitas Sayão on 15/11/20.
 //
 
-struct Book {
+struct Book: Hashable {
     let title: String
     let author: String
     
