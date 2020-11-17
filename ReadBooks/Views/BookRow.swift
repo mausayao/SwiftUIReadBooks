@@ -24,6 +24,7 @@ struct BookRow: View {
                 )
                 .lineLimit(1)
             }
+            .padding(.vertical, 8)
         }
     }
 }

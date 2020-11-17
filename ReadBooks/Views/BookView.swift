@@ -45,12 +45,15 @@ extension Book {
 
 struct Book_Previews: PreviewProvider {
     static var previews: some View {
+        VStack{
         AuthorAndTitleStack(
             book: .init(),
             titleFont: .title,
             authorFont: .title2
             )
-        Book.Image(title: Book().title)
+            Book.Image(title: Book().title)
+        }
+        .previewedInAllColorSchemas
     }
 }
 
@@ -64,5 +67,11 @@ extension Image {
         }
         
         self.init(systemName: symbolName)
+    }
+}
+
+extension View {
+    var previewedInAllColorSchemas: some View {
+        ForEach(ColorScheme.allCases, id: \.self ,content: preferredColorScheme)
     }
 }
