@@ -21,7 +21,12 @@ struct DetailView: View {
                 authorFont: .title2
                 )
             VStack {
-                Book.Image(title: book.title)
+                Book.Image(
+                    uiImage: image,
+                    title: book.title,
+                    cornerRadius: 16
+                )
+                .scaledToFit()
                 Button("Update Image") {
                     showingImagePicker = true
                 }

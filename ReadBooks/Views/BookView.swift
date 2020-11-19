@@ -26,10 +26,21 @@ struct AuthorAndTitleStack: View {
 extension Book {
     
     struct Image: View {
+        let uiImage: UIImage?
         let title: String
         var size: CGFloat?
+        let cornerRadius: CGFloat
         
         var body: some View {
+            
+            if let image = uiImage.map(SwiftUI.Image.init) {
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: size, height: size)
+                    .cornerRadius(cornerRadius)
+            } else {
+                
             let symbol = SwiftUI.Image(title: title) ??
                 .init(systemName: "book")
             
@@ -39,6 +50,7 @@ extension Book {
                 .frame(width: size, height: size)
                 .font(Font.title.weight(.light))
                 .foregroundColor(.secondary)
+            }
         }
     }
 }
@@ -54,6 +66,16 @@ struct Book_Previews: PreviewProvider {
             Book.Image(title: Book().title)
         }
         .previewedInAllColorSchemas
+    }
+}
+
+extension Book.Image {
+    init(title: String) {
+        self.init(
+            uiImage: nil,
+            title: title,
+            cornerRadius: .init()
+        )
     }
 }
 

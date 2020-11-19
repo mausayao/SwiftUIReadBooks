@@ -8,7 +8,7 @@
 // SwiftUI não tem uma forma de guarda imagens, mas o UIImage sim
 import class UIKit.UIImage
 
-final class Library {
+struct Library {
     var sortedBooks: [Book] { bookCache }
     
     private var bookCache: [Book] = [
