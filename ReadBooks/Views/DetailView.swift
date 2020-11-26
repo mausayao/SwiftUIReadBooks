@@ -38,6 +38,15 @@ struct DetailView: View {
         .sheet(isPresented: $showingImagePicker) {
             PHPickerViewController.View(image: $image)
         }
+        .alert(isPresented: .constant(true)) {
+            .init(
+                title: .init("Delete image for \(book.title)?"),
+                primaryButton: .destructive(.init("Delete")) {
+                    image = nil
+                },
+                secondaryButton: .cancel()
+            )
+        }
     }
 }
 
