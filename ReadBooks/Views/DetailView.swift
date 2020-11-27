@@ -12,6 +12,7 @@ struct DetailView: View {
     let book: Book
     @Binding var image: UIImage?
     @State var showingImagePicker = false
+    @State var showDelete = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -19,7 +20,7 @@ struct DetailView: View {
                 book: book,
                 titleFont: .title,
                 authorFont: .title2
-                )
+            )
             VStack {
                 Book.Image(
                     uiImage: image,
@@ -27,10 +28,29 @@ struct DetailView: View {
                     cornerRadius: 16
                 )
                 .scaledToFit()
-                Button("Update Image") {
+                
+                let buttonUpdateImage =  Button("Update Image") {
                     showingImagePicker = true
                 }
                 .padding()
+                
+                if image != nil {
+                    HStack{
+                        Spacer()
+                        Button("Delete Image") {
+                            showDelete = true
+                        }
+                        .padding()
+                        
+                        Spacer()
+                        
+                        buttonUpdateImage
+                        
+                        Spacer()
+                    }
+                } else {
+                    buttonUpdateImage
+                }
             }
             Spacer()
         }
@@ -38,7 +58,7 @@ struct DetailView: View {
         .sheet(isPresented: $showingImagePicker) {
             PHPickerViewController.View(image: $image)
         }
-        .alert(isPresented: .constant(true)) {
+        .alert(isPresented: $showDelete) {
             .init(
                 title: .init("Delete image for \(book.title)?"),
                 primaryButton: .destructive(.init("Delete")) {
