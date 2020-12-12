@@ -7,6 +7,22 @@
 
 import SwiftUI
 
+struct BookMarkButton: View {
+    
+    var book: Book
+    
+    var body: some View {
+        let bookmark = "bookmark"
+        
+        Button {
+            book.readMe.toggle()
+        } label: {
+            Image(systemName: book.readMe ? "\(bookmark).fill": bookmark)
+                .font(.system(size: 48, weight: .light))
+        }
+    }
+}
+
 struct AuthorAndTitleStack: View {
     let book: Book
     let titleFont: Font

@@ -12,7 +12,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            List(libray.sortedBooks, id: \.self) { book in
+            List(libray.sortedBooks) { book in
                 BookRow(
                     book: book,
                     image: $libray.uiImages[book]
