@@ -29,6 +29,11 @@ struct BookRow: View {
                     authorFont: .title3
                 )
                 .lineLimit(1)
+                
+                Spacer()
+                
+                BookMarkButton(book: book)
+                    .buttonStyle(BorderlessButtonStyle())
             }
             .padding(.vertical, 8)
         }

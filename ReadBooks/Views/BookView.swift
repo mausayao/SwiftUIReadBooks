@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BookMarkButton: View {
     
-    var book: Book
+    @ObservedObject var book: Book
     
     var body: some View {
         let bookmark = "bookmark"
@@ -57,15 +57,15 @@ extension Book {
                     .cornerRadius(cornerRadius)
             } else {
                 
-            let symbol = SwiftUI.Image(title: title) ??
-                .init(systemName: "book")
-            
-            symbol
-                .resizable()
-                .scaledToFit()
-                .frame(width: size, height: size)
-                .font(Font.title.weight(.light))
-                .foregroundColor(.secondary)
+                let symbol = SwiftUI.Image(title: title) ??
+                    .init(systemName: "book")
+                
+                symbol
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: size, height: size)
+                    .font(Font.title.weight(.light))
+                    .foregroundColor(.secondary)
             }
         }
     }
@@ -73,15 +73,20 @@ extension Book {
 
 struct Book_Previews: PreviewProvider {
     static var previews: some View {
+        
         VStack{
-        AuthorAndTitleStack(
-            book: .init(),
-            titleFont: .title,
-            authorFont: .title2
-            )
-            Book.Image(title: Book().title)
+            HStack {
+                BookMarkButton(book: .init())
+                BookMarkButton(book: .init(readMe: false))
+                AuthorAndTitleStack(
+                    book: .init(),
+                    titleFont: .title,
+                    authorFont: .title2
+                )
+                Book.Image(title: Book().title)
+            }
+            .previewedInAllColorSchemas
         }
-        .previewedInAllColorSchemas
     }
 }
 
